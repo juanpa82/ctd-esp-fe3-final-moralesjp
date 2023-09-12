@@ -7,22 +7,27 @@ import Home from './Routes/Home';
 import Contact from './Routes/Contact';
 import Details from './Routes/Detail';
 import Favs from './Routes/Favs';
+import { ContextProvider } from './Components/utils/global.context';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-      
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<App/>}/>
-          <Route path='/Home'element={<Home/>}/>
-          <Route path='/Contact'element={<Contact/>}/>
-          <Route path='/Details'element={<Details/>}/>
-          <Route path='/Favs'element={<Favs/>}/>
-        </Routes>
+   
+     <React.StrictMode>
+        <BrowserRouter>
+          <ContextProvider>
+            <Routes>
+              <Route path='/' element={<App/>}/>
+              <Route path='/Home'element={<Home/>}/>
+              <Route path='/Contact'element={<Contact/>}/>
+              <Route path='/Details'element={<Details/>}/>
+              <Route path='/Favs'element={<Favs/>}/>
+          </Routes>
+        </ContextProvider>
       </BrowserRouter>
   </React.StrictMode>
+  
 );
 
 
