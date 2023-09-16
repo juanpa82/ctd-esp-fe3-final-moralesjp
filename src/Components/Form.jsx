@@ -1,53 +1,59 @@
+//import React from "react";
 import React, { useState } from 'react';
-//import ValidarEmail from './ValidarEmail';
-//import { render } from "react-dom";
-//import ValidarEmail from "./ValidarEmail";
 
-const Form  = () => {
-  const [nombreCompleto, setNombreCompleto] = useState("");
-  const [email, setEmail] = useState("");
-  
-  const handleNombreCompletoChange = (e) => {
-    setNombreCompleto(e.target.value);
-}
+const Form = () => {
+  const [email, setEmail] = useState('');
+  const [user, setUser] = useState('');
+  const [userError, setUserError] = useState('');
+  const [message, setMessage] = useState('');
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-  }
+    if(user.length < 5) {
+      setUserError('Por favor verifique su informacion nuevamente');
+    } else {
+      setUserError('');
+    }
+  };
 
+  const handleUserChange = (e) => {
+    setUser(e.target.value);
+    
+  };
 
-
-  const handleSubmit= (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  }
-    if (nombreCompleto < 5 ) {
-      console.log("Por favor, verifique su informacion nuevamente.");
-  } 
-  
-   
-    
+    // Handle form submission logic here
+    if(![user,email].includes("")) {
+      setMessage("Gracias " + user + " te contactaremos cuanto antes via mail");
+    }
+  };
+
   return (
-    
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre completo:</label>
-          <input type="text" 
-          value={nombreCompleto} 
-          onChange={handleNombreCompletoChange}/>
-         </div> 
-        
-        <div>
-          <label>email:</label>
-            <input type="email" 
-            value={email} 
-            onChange={handleEmailChange}/>
-        </div>
-           <button type="submit">agregar contacto</button>
-                  
-      </form>
-    
+    <form onSubmit={handleSubmit}>
+      <div>
+      <label></label>
+        <input 
+          type="text" 
+          placeholder="Ingrese su Nombre" 
+          value={user} 
+          onChange={handleUserChange} 
+        />
+        {userError && <div className="error">{userError}</div>}
+      </div>
+      <div>
+        <label></label>
+        <input 
+          type="email" 
+          placeholder="Ingrese su Correo" 
+          value={email} 
+          onChange={handleEmailChange} 
+        />
+      </div>
+      <button type="submit">Submit</button>
+      {message && <p>{message}</p>}
+    </form>
   );
 };
-
-
 
 export default Form;

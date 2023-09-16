@@ -1,23 +1,21 @@
-
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
-//import Form from "./Components/Form"
 import Contact from "./Routes/Contact";
-//import { ContextProvider } from "./Components/utils/global.context";
 
+import React from 'react';
+import { ThemeProvider } from "./Context/ThemeContext";
 
 
 function App() {
+  
   return (
-    
+    <ThemeProvider>
       <div className="App">
-
-          <Navbar/>
-          <Contact/>
-          
-          <Footer/>
+        <Navbar/>
+        <Contact/>
+        <Footer/>
       </div>
-      
+    </ThemeProvider>
   );
 }
 
